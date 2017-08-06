@@ -11,11 +11,12 @@ namespace Sudoku
         internal int? value;
         internal int column;
         internal int row;
-        
 
         public SudokuNumber(int row, int column, int? value)
         {
-
+            this.value = value;
+            this.column = column;
+            this.row = row;
         }
     }
 }
