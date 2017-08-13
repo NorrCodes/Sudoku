@@ -11,6 +11,8 @@ namespace Sudoku
         internal int? value;
         internal int column;
         internal int row;
+        internal List<int?> possibilities;
+        internal bool correct = false;
 
         public SudokuNumber(int row, int column, int? value)
         {
