@@ -102,6 +102,27 @@ namespace Sudoku
 			return entries[i].correct;
 		}
 
+		internal void GridCheck(int grid, int value)
+		{
+			for(int i = 0; i < entries.Count; i++ )
+			{
+				entries[i].tempCheck = false;
+			}
+
+			int[] gridCorner = GetGridCorner(grid);
+
+			int cornerRow = gridCorner[0];
+			int cornerColumn = gridCorner[1];
+
+			for(int i = cornerRow; i <= cornerRow+2; i++ )
+			{
+				for(int j = cornerColumn; j <= cornerColumn+2; j++)
+				{
+					entries[CurrentEntry(i, j)].tempCheck = Scan(i, j).Contains(value) ? true : false;
+				}
+			}
+		}
+
 		internal static int CurrentEntry(int row, int column)
 		//Returns the index in the "entries" collection using the row and column number
 		{

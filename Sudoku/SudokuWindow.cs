@@ -11,6 +11,9 @@ namespace Sudoku
 		Sudoku game;
 		List<Button> buttons;
 		Button lastButton = null;
+		GridCheckDialog dialog = new GridCheckDialog();
+		int gridCheck;
+		int valueCheck;
 
 		public SudokuWindow ()
 		{
@@ -20,6 +23,7 @@ namespace Sudoku
 			fillButtons();
 			game1();
 			UpdateButtons();
+			dialog.VisibleChanged += new EventHandler(Dialog_Visibility);
 		}
 
 		void UpdateButtons()
@@ -55,21 +59,24 @@ namespace Sudoku
 		void MyButtonClick (object sender, EventArgs e)
 		//Event handler used for any number button click
 		{
-			char[] buttonName = ( (Button)sender ).Name.ToCharArray();
-
-			int row = buttonName[1] - 48;
-			int column = buttonName[3] - 48;
-
-			//This line is to make conditional statement more clear
-			SudokuNumber buttonNumber = game.entries[Sudoku.CurrentEntry(row,column)];
-
-			if ( !buttonNumber.correct & lastButton ==((Button)sender))
+			if ( buttons.Contains((Button)sender) )
 			{
-				int? newValue = game.Increment(row, column);
+				char[] buttonName = ( (Button)sender ).Name.ToCharArray();
 
-				( (Button)sender ).Text = Convert.ToString(newValue);
+				int row = buttonName[1] - 48;
+				int column = buttonName[3] - 48;
+
+				//This line is to make conditional statement more clear
+				SudokuNumber buttonNumber = game.entries[Sudoku.CurrentEntry(row, column)];
+
+				if ( !buttonNumber.correct & lastButton == ( (Button)sender ) )
+				{
+					int? newValue = game.Increment(row, column);
+
+					( (Button)sender ).Text = Convert.ToString(newValue);
+				}
+				lastButton = ( (Button)sender );
 			}
-			lastButton = ( (Button)sender );
 		}
 
 		void fillButtons ()
@@ -249,6 +256,28 @@ namespace Sudoku
 			foreach ( Button b in buttons )
 			{
 				ButtonCheck(b);
+			}
+		}
+
+		private void button1_Click (object sender, EventArgs e)
+		{
+			dialog.Visible = true;
+		}
+
+		void Dialog_Visibility (object sender, EventArgs e)
+		{
+			if(( (GridCheckDialog)sender ).Visible == false)
+			{
+				Text = Convert.ToString(dialog.grid);
+				game.GridCheck((int)dialog.grid - 48, (int)dialog.value - 48);
+
+				for(int i=0; i<buttons.Count; i++)
+				{
+					if(game.entries[i].tempCheck & !game.entries[i].correct)
+					{
+						buttons[i].BackColor = Color.Green;
+					}
+				}
 			}
 		}
 	}

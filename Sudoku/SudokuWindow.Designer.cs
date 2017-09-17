@@ -122,6 +122,7 @@ namespace Sudoku
 			this.I7_7 = new System.Windows.Forms.Button();
 			this.CheckEntry = new System.Windows.Forms.Button();
 			this.CheckSolution = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
 			this.gridA.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.gridC.SuspendLayout();
@@ -1291,12 +1292,25 @@ namespace Sudoku
 			this.CheckSolution.UseVisualStyleBackColor = false;
 			this.CheckSolution.Click += new System.EventHandler(this.CheckSolution_Click);
 			// 
+			// button1
+			// 
+			this.button1.BackColor = System.Drawing.Color.Gainsboro;
+			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button1.Location = new System.Drawing.Point(781, 162);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(113, 89);
+			this.button1.TabIndex = 23;
+			this.button1.Text = "Grid Check Test";
+			this.button1.UseVisualStyleBackColor = false;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// SudokuWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(903, 700);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.CheckSolution);
 			this.Controls.Add(this.CheckEntry);
 			this.Controls.Add(this.gridI);
@@ -1424,6 +1438,7 @@ namespace Sudoku
         private System.Windows.Forms.Button I7_7;
         private System.Windows.Forms.Button CheckEntry;
 		private System.Windows.Forms.Button CheckSolution;
+		private System.Windows.Forms.Button button1;
 	}
 }
 
