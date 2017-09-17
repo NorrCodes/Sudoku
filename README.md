@@ -9,3 +9,5 @@ Intended Features:
 - Solving
 - Generating puzzles
 - Nicer UI
+
+Currently slowed down progress due to school.
